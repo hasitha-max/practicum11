@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>CraftSphere - Registration</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #fff3e0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+        }
+
+        .container {
+            background: #fffdf7;
+            padding: 25px;
+            width: 350px;
+            border-radius: 12px;
+            box-shadow: 0 0 10px #c49a7a;
+        }
+
+        h2 {
+            text-align: center;
+            color: #8d4e27;
+        }
+
+        p {
+            text-align: center;
+            color: #a0522d;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 10px;
+            margin: 8px 0;
+            box-sizing: border-box;
+            border: 1px solid #c49a7a;
+            border-radius: 5px;
+        }
+
+        button {
+            width: 100%;
+            padding: 10px;
+            background: #a0522d;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #783c1d;
+        }
+
+        #message {
+            text-align: center;
+            margin-top: 12px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <h2>CraftSphere</h2>
+    <p>Creative Handmade Crafts Registration</p>
+
+    <form onsubmit="return validateForm()">
+
+        <input type="text" id="name" placeholder="Full Name">
+
+        <input type="text" id="email" placeholder="Email Address">
+
+        <input type="text" id="phone" placeholder="Phone Number">
+
+        <select id="interest">
+            <option value="">Select Craft Interest</option>
+            <option>Paper Crafts</option>
+            <option>DIY Crafts</option>
+            <option>Home Decoration</option>
+            <option>Painting</option>
+            <option>Handmade Jewellery</option>
+        </select>
+
+        <input type="password" id="password"
+               placeholder="Create Password">
+
+        <input type="password" id="confirm"
+               placeholder="Confirm Password">
+
+        <button type="submit">Register</button>
+
+    </form>
+
+    <p id="message"></p>
+
+</div>
+
+<script>
+
+function validateForm() {
+
+    let name = document.getElementById("name").value;
+    let email = document.getElementById("email").value;
+    let phone = document.getElementById("phone").value;
+    let interest = document.getElementById("interest").value;
+    let password = document.getElementById("password").value;
+    let confirm = document.getElementById("confirm").value;
+
+    let message = document.getElementById("message");
+
+    if (name == "" || email == "" || phone == "" ||
+        interest == "" || password == "" || confirm == "") {
+
+        message.style.color = "red";
+        message.innerHTML = "Please fill all the fields!";
+        return false;
+    }
+
+    if (!email.includes("@") || !email.includes(".")) {
+        message.style.color = "red";
+        message.innerHTML = "Enter a valid email address!";
+        return false;
+    }
+
+    if (!/^[0-9]{10}$/.test(phone)) {
+        message.style.color = "red";
+        message.innerHTML = "Enter a valid 10-digit phone number!";
+        return false;
+    }
+
+    if (password.length < 6) {
+        message.style.color = "red";
+        message.innerHTML = "Password must contain at least 6 characters!";
+        return false;
+    }
+
+    if (password != confirm) {
+        message.style.color = "red";
+        message.innerHTML = "Passwords do not match!";
+        return false;
+    }
+
+    message.style.color = "green";
+    message.innerHTML = "Registration Successful! Welcome to CraftSphere.";
+
+    return false;
+}
+
+</script>
+
+</body>
+</html>
